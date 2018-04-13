@@ -39,5 +39,5 @@ This project doesn't include any parameter tuning, it just gets things running a
    - 'validation' folder
       - 'cat' folder: contains validation set images of cats
       - 'dog' folder: contains validation set images of dogs
-- 'weights' folder: initially just contains a README.md but must contain the weights file for the image rec models above for the script to run
+- 'weights' folder: initially just contains a placeholder text file but must contain the weights file for the image rec models above for the script to run
 - 'add_custom_class.py': trains a model to identify custom classes of dogs and cats
