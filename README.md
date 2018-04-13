@@ -1,18 +1,18 @@
-### image-rec-custom-class
+## image-rec-custom-class
 
-#### Summary:
+### Summary:
 Add custom classes to open source image recognition models.
 
-#### Motivation:
+### Motivation:
 Learn to extend open source image recognition models to custom classes.
 
-#### Data: 
+### Data: 
 Data comes from the "Dogs vs. Cats" dataset from Kaggle.com.
 To keep things easy, I only use 100 images for the training and validation sets for each class.
 
 The data can be found at: https://www.kaggle.com/c/dogs-vs-cats
 
-#### Method:
+### Method:
 I attempt to identify 2 custom classes: cats and dogs.
 
 The general strategy is to use an open-source image recognition model without the last layer.
@@ -30,7 +30,7 @@ I use 2 open source image recogntion models:
 
 This project doesn't include any parameter tuning, it just gets things running as fast as possible.
 
-#### Files
+### Files
 
 - 'data' folder
    - 'train' folder
@@ -41,6 +41,3 @@ This project doesn't include any parameter tuning, it just gets things running a
       - 'dog' folder: contains validation set images of dogs
 - 'weights' folder: initially just contains a README.md but must contain the weights file for the image rec models above for the script to run
 - 'add_custom_class.py': trains a model to identify custom classes of dogs and cats
-
-#### Notes
-TO DO!
