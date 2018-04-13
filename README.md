@@ -10,6 +10,8 @@ Learn to extend open source image recognition models to custom classes.
 Data comes from the "Dogs vs. Cats" dataset from Kaggle.com.
 To keep things easy, I only use 100 images for the training and validation sets for each class.
 
+The data can be found at: https://www.kaggle.com/c/dogs-vs-cats
+
 #### Method:
 I attempt to identify 2 custom classes: cats and dogs.
 
