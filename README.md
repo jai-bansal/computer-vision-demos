@@ -1,10 +1,10 @@
-## image-rec-custom-class
+## computer-vision-demos
 
 ### Summary:
-Add custom classes to open source image recognition models.
-
-### Motivation:
-Learn to extend open source image recognition models to custom classes.
+This repo contains simple examples of a few popular computer vision tasks:
+- image classification using open source image recognition models modified for custom classes
+- object character recognition (OCR) (TO DO)
+- object detection (TO DO)
 
 ### Data: 
 Data comes from the "Dogs vs. Cats" dataset from Kaggle.com.
@@ -13,6 +13,8 @@ To keep things easy, I only use 100 images for the training and validation sets 
 The data can be found at: https://www.kaggle.com/c/dogs-vs-cats
 
 ### Method:
+
+#### Image Classification with Custom Classes
 I attempt to identify 2 custom classes: cats and dogs.
 
 The general strategy is to use an open-source image recognition model without the last layer.
@@ -28,7 +30,11 @@ I use 2 open source image recogntion models:
 - Xception
 - InceptionV3
 
-This project doesn't include any parameter tuning, it just gets things running as fast as possible.
+No parameter tuning is included, this repo just gets things running as fast as possible.
+
+#### OCR
+
+#### Object Detection
 
 ### Files
 
