@@ -2,19 +2,26 @@
 
 ### Summary:
 This repo contains simple examples of a few popular computer vision tasks:
-- image classification using open source image recognition models modified for custom classes
-- object character recognition (OCR) (TO DO)
+- image classification using transfer learning
+- object character recognition (OCR)
 - object detection (TO DO)
 
 ### Data: 
+
+#### Image Classification using Transfer Learning
 Data comes from the "Dogs vs. Cats" dataset from Kaggle.com.
 To keep things easy, I only use 100 images for the training and validation sets for each class.
 
 The data can be found at: https://www.kaggle.com/c/dogs-vs-cats
 
+#### OCR
+I use 3 images containing text (included in repository).
+
+#### Object Detection: TO DO
+
 ### Method:
 
-#### Image Classification with Custom Classes
+#### Image Classification using Transfer Learning
 I attempt to identify 2 custom classes: cats and dogs.
 
 The general strategy is to use an open-source image recognition model without the last layer.
@@ -33,10 +40,13 @@ I use 2 open source image recogntion models:
 No parameter tuning is included, this repo just gets things running as fast as possible.
 
 #### OCR
+I conduct OCR on 3 sample images in R and Python. I return text and the original images with bounding boxes.
 
-#### Object Detection
+#### Object Detection: TO DO
 
-### Files
+### Branches and Files
+
+#### Image Classification using Transfer Learning
 
 - 'data' folder
    - 'train' folder
@@ -47,3 +57,8 @@ No parameter tuning is included, this repo just gets things running as fast as p
       - 'dog' folder: contains validation set images of dogs
 - 'weights' folder: initially just contains a placeholder text file but must contain the weights file for the image rec models above for the script to run
 - 'add_custom_class.py': trains a model to identify custom classes of dogs and cats
+
+#### 'optical_character_recognition' branch
+
+- 'sample_images' folder: contains 3 sample images to conduct OCR on
+- 'ocr.R' and 'ocr.py': conducts OCR (returning text and images with bounding boxes) in R and Python respectively
