@@ -46,7 +46,7 @@ I conduct OCR on 3 sample images in R and Python. I return text and the original
 
 ### Branches and Files
 
-#### Image Classification using Transfer Learning
+#### 'image_classification_transfer_learning' branch
 
 - 'data' folder
    - 'train' folder
