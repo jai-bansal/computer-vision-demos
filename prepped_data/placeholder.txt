@@ -1,0 +1,2 @@
+# Placeholder file to specify folder structure.
+# This folder should contain prepped data that will be used to train and evaluate an object detection model.

@@ -1,0 +1,4 @@
+# Placeholder file to specify folder structure.
+# This folder should contain pre-built model objects.
+# Pre-build models can be downloaded from:
+# https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
