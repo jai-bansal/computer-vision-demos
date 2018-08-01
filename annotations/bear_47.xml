@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>bear_47.jpg</filename>
+	<path>C:\Users\jbansal\Documents\GitHub\computer-vision-demos\images\bear_47.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>516</width>
+		<height>389</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bear</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>346</xmin>
+			<ymin>131</ymin>
+			<xmax>483</xmax>
+			<ymax>273</ymax>
+		</bndbox>
+	</object>
+</annotation>
