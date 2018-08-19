@@ -44,6 +44,12 @@ I conduct OCR on 3 sample images in R and Python. I return text and the original
 
 #### Object Detection: TO DO
 
+- installation tough
+- include tensorflow instructions
+- tensorflow/models repo needed
+- protoc installation and issues
+- 
+
 ### Branches and Files
 
 #### 'image_classification_transfer_learning' branch
