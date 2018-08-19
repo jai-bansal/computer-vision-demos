@@ -29,7 +29,7 @@ I run the new data through this almost-complete model and use the outputs as the
 new, small neural network.
 
 Reference articles:
-- https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html\
+- https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html
 - https://gist.github.com/fchollet/f35fbc80e066a49d65f1688a7e99f069
 - https://machinelearningmastery.com/multi-class-classification-tutorial-keras-deep-learning-library/
 
