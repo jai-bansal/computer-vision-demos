@@ -1,6 +1,17 @@
 # I use the following script to create training and validation data set 
 # records for use in an object detection model.
 
+# THIS SCRIPT WILL NOT WORK OUT OF THE BOX!
+# See below for instructions.
+
+# Confusinly, running the last 2 lines of the script (which creates the 
+# training and validation data) throws an error but works anyway.
+# The error does NOT occur if you execute the "main()" function line by line.
+# Check the "prepped_data" folder for training and validation data to check 
+# if the script worked.
+
+###############################################################################
+
 # Copyright 2017 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -55,19 +66,17 @@ import tensorflow as tf
 # You can add folders to the Python path as follows (the following commands 
 # must be modified for your machine).
 
-# Confusingly, this script sometimes throws an error but works anyway.
-# Check the "prepped_data" folder for training and validation data to check 
-# if the script worked.
-
-import sys
+# Example code to add a folder to Python path.
+# import sys
 # sys.path.append('models/research')
 
-sys.path.append('C:/Jai/GitHub/models/research')
+# Assuming the correct paths are added to the Python path, import more stuff.
 from object_detection.utils import dataset_util
 from object_detection.utils import label_map_util
 
 
-os.chdir('C:\Jai\GitHub\computer-vision-demos')
+# Set flags.
+# Make sure working directory is set correctly.
 flags = tf.app.flags
 flags.DEFINE_string('data_dir', '', 'Root directory to raw pet dataset.')
 flags.DEFINE_string('output_dir', 'prepped_data', 'Path to directory to output TFRecords.')
@@ -258,6 +267,8 @@ def main(_):
 if __name__ == '__main__':
   tf.app.run()
   
- # Confusingly, this script sometimes throws an error but works anyway.
+# Confusinly, running the last 2 lines of the script (which creates the 
+# training and validation data) throws an error but works anyway.
+# The error does NOT occur if you execute the "main()" function line by line.
 # Check the "prepped_data" folder for training and validation data to check 
 # if the script worked.
