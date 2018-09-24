@@ -1,10 +1,14 @@
-# I use the following script to create training and validation data set 
+# This script creates training and validation data set 
 # records for use in an object detection model.
+
+# Overall, to get this project working I used the following blog post:
+# https://towardsdatascience.com/building-a-toy-detector-with-tensorflow-object-detection-api-63c0fdf2ac95 
+# and LOTS of Googling errors.
 
 # THIS SCRIPT WILL NOT WORK OUT OF THE BOX!
 # See below for instructions.
 
-# Confusinly, running the last 2 lines of the script (which creates the 
+# Confusingly, running the last 2 lines of the script (which creates the 
 # training and validation data) throws an error but works anyway.
 # The error does NOT occur if you execute the "main()" function line by line.
 # Check the "prepped_data" folder for training and validation data to check 
