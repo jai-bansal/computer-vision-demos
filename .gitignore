@@ -103,3 +103,5 @@ ENV/
 # Model-related files
 *.tar.gz
 *.tar
+*.index
+*.meta
