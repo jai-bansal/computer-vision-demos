@@ -4,7 +4,7 @@
 This repo contains simple examples of a few popular computer vision tasks:
 - image classification using transfer learning
 - object character recognition (OCR)
-- object detection (TO DO)
+- object detection (IN PROGRESS)
 
 ### Data: 
 
@@ -18,7 +18,7 @@ The data can be found at: https://www.kaggle.com/c/dogs-vs-cats
 I use 3 images containing text (included in repository).
 
 #### Object Detection: 
-To train the object detection model, I downloaded xx bear pictures from Google Images.
+To train the object detection model, I downloaded ~175 bear pictures from Google Images.
 To qualitatively test the object detection model, I downloaded a video with bears in it from Youtube.
 
 ### Method:
@@ -48,6 +48,9 @@ I conduct OCR on 3 sample images in R and Python. I return text and the original
 I attempt to identify a bear in a new, test video and place a bounding box around bears in every frame in which they appear.
 
 I generally use a transfer learning approach similar to the "image_classification_transfer_learning" branch. I start with a pre-trained network and train it using my custom bear images.
+
+Much of my approach was based on this blog post:
+xxx
 
 I run these scripts locally, not in the cloud.
 
@@ -89,3 +92,12 @@ You will probably still hit a few errors that need to be Googled.
 - 'ocr.R' and 'ocr.py': conducts OCR (returning text and images with bounding boxes) in R and Python respectively
 
 #### 'object_detection' branch
+
+- 'annotations' folder: contains annotations for the images in the 'images' folder. I used xxx (link) for annotations. This folder also contains 'trainval.txt' (tbd).
+- 'base_model' folder: holds pre-trained model files. I used xxx
+- 'eval_dir' folder: contains model evaluation artifacts, such as xxx
+- 'images' folder: contains images used to train object detection model
+- 'prepped_data' folder: contains training and validation set data prepared for use in model training
+- 'scripts' folder: contains scripts for xxx
+- 'test_video' folder: contains videos that trained object detection model will be qualitatively tested on
+- 'training_artifacts' folder: contains model training artifacts, such as xxx
