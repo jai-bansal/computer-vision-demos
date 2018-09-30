@@ -50,7 +50,7 @@ I attempt to identify a bear in a new, test video and place a bounding box aroun
 I generally use a transfer learning approach similar to the "image_classification_transfer_learning" branch. I start with a pre-trained network and train it using my custom bear images.
 
 Much of my approach was based on this blog post:
-xxx
+https://towardsdatascience.com/building-a-toy-detector-with-tensorflow-object-detection-api-63c0fdf2ac95
 
 I run these scripts locally, not in the cloud.
 
@@ -93,11 +93,11 @@ You will probably still hit a few errors that need to be Googled.
 
 #### 'object_detection' branch
 
-- 'annotations' folder: contains annotations for the images in the 'images' folder. I used xxx (link) for annotations. This folder also contains 'trainval.txt' (tbd).
-- 'base_model' folder: holds pre-trained model files. I used xxx
-- 'eval_dir' folder: contains model evaluation artifacts, such as xxx
+- 'annotations' folder: contains annotations for the images in the 'images' folder. I used a tool to create annotations (https://github.com/tzutalin/labelImg). This folder also contains 'trainval.txt' (created by 'trainval_txt_creator.py' in the 'scripts' folder).
+- 'base_model' folder: holds pre-trained model files. I used 'ssd_mobilenet_v1_coco' from: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
+- 'eval_dir' folder: contains model evaluation artifacts, specifically a 'tfevents' file
 - 'images' folder: contains images used to train object detection model
 - 'prepped_data' folder: contains training and validation set data prepared for use in model training
-- 'scripts' folder: contains scripts for xxx
-- 'test_video' folder: contains videos that trained object detection model will be qualitatively tested on
-- 'training_artifacts' folder: contains model training artifacts, such as xxx
+- 'scripts' folder: contains all scripts for this project. All scripts have descriptions in their comments.
+- 'test_video' folder: contains videos that trained object detection model is qualitatively tested on
+- 'training_artifacts' folder: contains model training artifacts, specifically recent model checkpoints
