@@ -100,4 +100,5 @@ You will probably still hit a few errors that need to be Googled.
 - 'prepped_data' folder: contains training and validation set data prepared for use in model training
 - 'scripts' folder: contains all scripts for this project. All scripts have descriptions in their comments.
 - 'test_video' folder: contains videos that trained object detection model is qualitatively tested on
+- 'test_video_frames' folder: contains frames from the videos in 'test_video' folder
 - 'training_artifacts' folder: contains model training artifacts, specifically recent model checkpoints
