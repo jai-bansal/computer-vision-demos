@@ -1,5 +1,5 @@
 # This script splits videos into frames and saves those frames.
-# The video frames will be used to test a trained object 
+# The video frames will be used to qualitatively test a trained object 
 # detection model.
 
 ################
@@ -13,6 +13,8 @@ import os                           # used for file manipulation
 ################
 
 # Set path to videos.
+# This is set as if the working directory is the "computer_vision_demos" 
+# folder.
 vids_path = 'test_video'
 
 # Set path to where video frames are saved.
@@ -37,10 +39,11 @@ for file in os.listdir(vids_path):
         valid_input, frame = vid.read()
 
         # Save valid frames.
-        while valid_input:
-                
-            cv2.imwrite((image_path + '/' + str(file) + '_' + str(vid.get(cv2.CAP_PROP_POS_FRAMES)) + '.jpg'),
+        while valid_input:           
+           
+            # Save frame.
+            cv2.imwrite((image_path + '/' + str(file)[:-4] + '_' + str(vid.get(cv2.CAP_PROP_POS_FRAMES)) + '.jpg'),
                         frame)
-
+    
             # Get next frame.
             valid_input, frame = vid.read()
