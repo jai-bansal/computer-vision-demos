@@ -1,3 +1,27 @@
+# This script evalutes an object detection model.
+
+# Overall, to get this project working I used the following blog post:
+# https://towardsdatascience.com/building-a-toy-detector-with-tensorflow-object-detection-api-63c0fdf2ac95 
+# and LOTS of Googling errors.
+
+# This script in particular can be a bitch.
+
+# You will need the "cocoapi" repository. The link is:
+# https://github.com/cocodataset/cocoapi
+# IF YOU ARE ON WINDOWS, BE SURE TO USE:
+# https://github.com/philferriere/cocoapi
+
+# You will need to install Visual C++. Instructions are in the Github link 
+# above (the Windows version link).
+
+# Finally, you will need to run the command:
+# python PythonAPI/setup.py build_ext install
+# This installs the "pycocotools" package and enables the 
+# "from object_detection.legacy import evaluator"
+# command below.
+
+###############################################################################
+
 # Copyright 2017 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,18 +68,12 @@ Example usage:
         --input_config_path=eval_input_config.pbtxt
 """
 
-# Add paths to Python path to ease imports below.
-import sys
-sys.path.append('C:\\Users\\jbansal\\Documents\\GitHub\\models\\research')
-sys.path.append('C:\\Users\\jbansal\\Documents\\GitHub\\models\\research\\slim')
-sys.path.append('C:\\Users\\jbansal\\Documents\\GitHub\\models\\research\\syntaxnet\\tensorflow\\tensorflow\\python\\keras\\applications')
-sys.path.append('C:\\Users\\jbansal\\Documents\\GitHub\\cocoapi\\PythonAPI')
-
 import functools
 import tensorflow as tf
 
-from google.protobuf import text_format
-from object_detection import evaluator
+from google.protobuf import text_format 
+#from object_detection import evaluator # error
+from object_detection.legacy import evaluator
 from object_detection.builders import input_reader_builder
 from object_detection.builders import model_builder
 from object_detection.protos import eval_pb2
@@ -64,9 +82,6 @@ from object_detection.protos import model_pb2
 from object_detection.protos import pipeline_pb2
 from object_detection.utils import label_map_util
 
-import os 
-os.chdir('C:\\Users\\jbansal\\Documents\\GitHub\\logo-detector')
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
@@ -78,7 +93,7 @@ flags.DEFINE_string('checkpoint_dir', 'training_artifacts',
                     'set to `train_dir` used in the training job.')
 flags.DEFINE_string('eval_dir', 'eval_dir',
                     'Directory to write eval summaries to.')
-flags.DEFINE_string('pipeline_config_path', 'ssd_mobilenet_v1_coco.config',
+flags.DEFINE_string('pipeline_config_path', 'ssd_mobilenet_v1_coco_2018_01_28.config',
                     'Path to a pipeline_pb2.TrainEvalPipelineConfig config '
                     'file. If provided, other configs are ignored')
 
@@ -168,7 +183,6 @@ def main(unused_argv):
 
   evaluator.evaluate(create_input_dict_fn, model_fn, eval_config, categories,
                      FLAGS.checkpoint_dir, FLAGS.eval_dir)
-
 
 if __name__ == '__main__':
   tf.app.run()

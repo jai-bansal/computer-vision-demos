@@ -1,3 +1,18 @@
+# This script trains an object detection model.
+
+# Overall, to get this project working I used the following blog post:
+# https://towardsdatascience.com/building-a-toy-detector-with-tensorflow-object-detection-api-63c0fdf2ac95 
+# and LOTS of Googling errors.
+
+# Confusingly, running the last 2 lines of the script (which kick off the 
+# training function) throws an error.
+# However, the error does NOT occur if you execute the "main()" function line by line.
+
+# Running the script generates a tensorboard object in the same folder where 
+# model checkpoints are saved.
+
+###############################################################################
+
 # Copyright 2017 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,29 +59,30 @@ Example usage:
 import functools
 import json
 import os
-os.chdir('C:\\Users\\jbansal\\Documents\\GitHub\\logo-detector')
-
 import tensorflow as tf
-
 from google.protobuf import text_format
 
-# Add paths to Python path to ease imports below.
-import sys
-sys.path.append('C:\\Users\\jbansal\\Documents\\GitHub\\models\\research')
-sys.path.append('C:\\Users\\jbansal\\Documents\\GitHub\\models\\research\\slim')
-sys.path.append('C:\\Users\\jbansal\\Documents\\GitHub\\models\\research\\syntaxnet\\tensorflow\\tensorflow\\python\\keras\\applications')
+# The following repository needs to be cloned for the rest of the imports.
+# https://github.com/tensorflow/models
 
-# Added this in myself
-################
-#from deployment import model_deploy
-#import inception_resnet_v2
-################
+# To use the Tensorflow Objection Detection API, follow the installation 
+# instructions here: 
+# https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md
 
-from object_detection import trainer
+# The "models/research" and possibly "models/research/slim" folders  
+# should be added to the Python path to allow the following imports.
+# You can add folders to the Python path as follows (the following commands 
+# must be modified for your machine).
+
+# Example code to add a folder to Python path.
+# import sys
+# sys.path.append('models/research')
+
+# Assuming the correct paths are added to the Python path, import more stuff.
+# from object_detection import trainer # this throws an error
+from object_detection.legacy import trainer
 from object_detection.builders import input_reader_builder
-
-from object_detection.builders import model_builder      
-
+from object_detection.builders import model_builder # lots of chatter, but no error  
 from object_detection.protos import input_reader_pb2
 from object_detection.protos import model_pb2
 from object_detection.protos import pipeline_pb2
@@ -87,10 +103,10 @@ flags.DEFINE_integer('worker_replicas', 1, 'Number of worker+trainer '
 flags.DEFINE_integer('ps_tasks', 0,
                      'Number of parameter server tasks. If None, does not use '
                      'a parameter server.')
+
 flags.DEFINE_string('train_dir', 'training_artifacts',
                     'Directory to save the checkpoints and training summaries.')
-
-flags.DEFINE_string('pipeline_config_path', 'ssd_mobilenet_v1_coco.config',
+flags.DEFINE_string('pipeline_config_path', 'ssd_mobilenet_v1_coco_2018_01_28.config',
                     'Path to a pipeline_pb2.TrainEvalPipelineConfig config '
                     'file. If provided, other configs are ignored')
 
@@ -102,7 +118,6 @@ flags.DEFINE_string('model_config_path', '',
                     'Path to a model_pb2.DetectionModel config file.')
 
 FLAGS = flags.FLAGS
-
 
 def get_configs_from_pipeline_file():
   """Reads training configuration from a pipeline_pb2.TrainEvalPipelineConfig.
@@ -160,13 +175,11 @@ def main(_):
   else:
     model_config, train_config, input_config = get_configs_from_multiple_files()
 
-  model_fn = functools.partial(
-      model_builder.build,
-      model_config=model_config,
-      is_training=True)
+  model_fn = functools.partial(model_builder.build, 
+                               model_config = model_config, 
+                               is_training = True)
 
-  create_input_dict_fn = functools.partial(
-      input_reader_builder.build, input_config)
+  create_input_dict_fn = functools.partial(input_reader_builder.build, input_config)
 
   env = json.loads(os.environ.get('TF_CONFIG', '{}'))
   cluster_data = env.get('cluster', None)
@@ -203,12 +216,11 @@ def main(_):
     worker_job_name = '%s/task:%d' % (task_info.type, task_info.index)
     task = task_info.index
     is_chief = (task_info.type == 'master')
-    master = server.target
+    master = server.target  
 
-  trainer.train(create_input_dict_fn, model_fn, train_config, master, task,
-                FLAGS.num_clones, worker_replicas, FLAGS.clone_on_cpu, ps_tasks,
-                worker_job_name, is_chief, FLAGS.train_dir)
-
-
+    trainer.train(create_input_dict_fn, model_fn, train_config, master, task,
+                    FLAGS.num_clones, worker_replicas, FLAGS.clone_on_cpu, ps_tasks,
+                    worker_job_name, is_chief, FLAGS.train_dir)
+    
 if __name__ == '__main__':
   tf.app.run()
