@@ -93,12 +93,12 @@ You will probably still hit a few errors that need to be Googled.
 
 #### 'object_detection' branch
 
-- 'annotations' folder: contains annotations for the images in the 'images' folder. I used a tool to create annotations (https://github.com/tzutalin/labelImg). This folder also contains 'trainval.txt' (created by 'trainval_txt_creator.py' in the 'scripts' folder).
-- 'base_model' folder: holds pre-trained model files. I used 'ssd_mobilenet_v1_coco' from: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
-- 'eval_dir' folder: contains model evaluation artifacts, specifically a 'tfevents' file
+- 'annotations' folder: contains annotations for the images in the 'images' folder. I used a tool to create annotations (https://github.com/tzutalin/labelImg). This folder also contains 'trainval.txt' (output of running 'scripts/trainval_txt_creator.py').
+- 'base_model' folder: holds pre-trained model files (empty in repo because files are too large). I used 'ssd_mobilenet_v1_coco' from: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
+- 'eval_dir' folder: contains model evaluation artifacts, specifically a 'tfevents' file (empty in repo because files are too large). These are outputs of running 'scripts/eval.py'.
 - 'images' folder: contains images used to train object detection model
-- 'prepped_data' folder: contains training and validation set data prepared for use in model training
+- 'prepped_data' folder: contains training and validation set data prepared for use in model training (these are outputs of running 'scripts/create_record.py')
 - 'scripts' folder: contains all scripts for this project. All scripts have descriptions in their comments.
 - 'test_video' folder: contains videos that trained object detection model is qualitatively tested on
-- 'test_video_frames' folder: contains frames from the videos in 'test_video' folder
-- 'training_artifacts' folder: contains model training artifacts, specifically recent model checkpoints
+- 'test_video_frames' folder: contains frames from the videos in 'test_video' folder (empty in repo because files are too large). These are outputs of running 'scripts/split_vids_into_frames.py'
+- 'training_artifacts' folder: contains model training artifacts, specifically recent model checkpoints (empty in repo because files are too large). These are outputs of running 'scripts/train.py'.
