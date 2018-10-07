@@ -1,0 +1,5 @@
+# Placeholder file to specify folder structure.
+# This folder should contain an object detection model ready for inference.
+# A model is trained using "scripts/train.py".
+# Once a model is trained, "scripts/export_inference_graph.py" outputs a version 
+# ready for inference.

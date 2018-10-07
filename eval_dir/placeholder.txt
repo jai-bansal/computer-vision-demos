@@ -1,2 +1,4 @@
 # Placeholder file to specify folder structure.
-# This folder should contain evaluation objects for a trained object detection model.
+# This folder should contain an evaluation object (specifically a 'tfevents' file) 
+# for a trained object detection model.
+# This 'tfevents' file is the output of "scripts/eval.py".

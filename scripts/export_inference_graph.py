@@ -1,3 +1,8 @@
+# This script outputs an object detection model ready for use on new images.
+# The resulting model is put in the "inference_ready_model" folder.
+# A model can be trained using "scripts/train.py" and evaluated using 
+# "scripts/eval.py".
+
 # Confusingly, running the last 2 lines of the script (which run the main function) 
 # throws an error but works anyway.
 # The error does NOT occur if you execute the "main()" function line by line.

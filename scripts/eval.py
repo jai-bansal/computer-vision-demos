@@ -1,4 +1,5 @@
 # This script evalutes an object detection model.
+# A model can be trained using "scripts/train.py".
 
 # Overall, to get this project working I used the following blog post:
 # https://towardsdatascience.com/building-a-toy-detector-with-tensorflow-object-detection-api-63c0fdf2ac95 
@@ -169,8 +170,8 @@ def main(unused_argv):
 
   model_fn = functools.partial(
       model_builder.build,
-      model_config=model_config,
-      is_training=False)
+      model_config = model_config,
+      is_training = False)
 
   create_input_dict_fn = functools.partial(
       input_reader_builder.build,

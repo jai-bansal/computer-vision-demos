@@ -4,6 +4,11 @@
 
 # I add code using the "moviepy" package to work with videos.
 
+# This script requires a trained object detection model ready for inference to 
+# be in the "inference_ready_model" folder.
+# A model can be trained using "scripts/train.py" and evaluated using 
+# "scripts/eval.py".
+
 ################
 # IMPORT MODULES
 ################
