@@ -4,7 +4,7 @@
 This repo contains simple examples of a few popular computer vision tasks:
 - image classification using transfer learning
 - object character recognition (OCR)
-- object detection (IN PROGRESS)
+- object detection
 
 ### Data: 
 
@@ -47,7 +47,7 @@ I conduct OCR on 3 sample images in R and Python. I return text and the original
 #### Object Detection: 
 I attempt to identify a bear in a new, test video and place a bounding box around bears in every frame in which they appear.
 
-I generally use a transfer learning approach similar to the "image_classification_transfer_learning" branch. I start with a pre-trained network and train it using my custom bear images.
+I generally use a transfer learning approach similar to the "image_classification_transfer_learning" branch. I start with a pre-trained network and train it using ~175 custom bear images.
 
 Much of my approach was based on this blog post:
 https://towardsdatascience.com/building-a-toy-detector-with-tensorflow-object-detection-api-63c0fdf2ac95
@@ -93,12 +93,18 @@ You will probably still hit a few errors that need to be Googled.
 
 #### 'object_detection' branch
 
-- 'annotations' folder: contains annotations for the images in the 'images' folder. I used a tool to create annotations (https://github.com/tzutalin/labelImg). This folder also contains 'trainval.txt' (output of running 'scripts/trainval_txt_creator.py').
+- 'annotations' folder: contains annotations for images in the 'images' folder. I used an annotation tool (https://github.com/tzutalin/labelImg). This folder also contains 'trainval.txt' (output of 'scripts/trainval_txt_creator.py').
 - 'base_model' folder: holds pre-trained model files (empty in repo because files are too large). I used 'ssd_mobilenet_v1_coco' from: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
-- 'eval_dir' folder: contains model evaluation artifacts, specifically a 'tfevents' file (empty in repo because files are too large). These are outputs of running 'scripts/eval.py'.
-- 'images' folder: contains images used to train object detection model
-- 'prepped_data' folder: contains training and validation set data prepared for use in model training (these are outputs of running 'scripts/create_record.py')
-- 'scripts' folder: contains all scripts for this project. All scripts have descriptions in their comments.
-- 'test_video' folder: contains videos that trained object detection model is qualitatively tested on
-- 'test_video_frames' folder: contains frames from the videos in 'test_video' folder (empty in repo because files are too large). These are outputs of running 'scripts/split_vids_into_frames.py'
+- 'eval_dir' folder: contains model evaluation artifacts, specifically a 'tfevents' file (empty in repo because files are too large). This is the output of 'scripts/eval.py'.
+- 'images' folder: contains ~175 bear images used to train object detection model. I manually downloaded these from Google.
+- 'inference_ready_model': holds trained object detection model ready for use on new images (empty in repo because files are too large). These files are the output of 'scripts/export_inference_graph.py'.
+- 'prepped_data' folder: contains training and validation set data prepared for use in model training. These files are outputs of 'scripts/create_record.py')
+- 'scripts' folder:
+   - 'create_record.py': creates training and validation data set records used to train an object detection model
+   - 'eval.py': evaluates a trained object detection model
+   - 'export_inference_graph.py': takes a trained object detection model as input and outputs a version of that model ready for use on new images
+   - 'run_model_on_new_video.py': runs an object detection model on a new video (technically the frames of the video)
+   - 'train.py': trains an object detection model. Takes as input 'prepped_data/train.record' and 'prepped_data/val.record'.
+   - 'trainval_txt_creator.py': creates 'annotations/trainval.txt'. This file matches images with bear labels and seems to be necessary for the whole process to work.
+- 'test_video' folder: contains a video that trained object detection model is qualitatively tested on and the object-detected version of that video.
 - 'training_artifacts' folder: contains model training artifacts, specifically recent model checkpoints (empty in repo because files are too large). These are outputs of running 'scripts/train.py'.
