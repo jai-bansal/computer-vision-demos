@@ -72,6 +72,8 @@ https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc
 
 You will probably still hit a few errors that need to be Googled.
 
+The final product ('test_video/bear sits next to guy_detection.mp4') is pretty good but not perfect. The model seems to mistake anything brown for a bear (like the camping chair at 0:02). It doesn't detect the actual bear until about 0:05. It stops recognizing the bear when the bear turns its face away from the camera at 0:08. This is probably a result of most of the training data being pictures of bears from the front. There are other false positives, but these might be excluded by only including detection above some confidence threshold. Overall, this is a pretty cool result.
+
 ### Branches and Files
 
 #### 'image_classification_transfer_learning' branch
@@ -108,3 +110,5 @@ You will probably still hit a few errors that need to be Googled.
    - 'trainval_txt_creator.py': creates 'annotations/trainval.txt'. This file matches images with bear labels and seems to be necessary for the whole process to work.
 - 'test_video' folder: contains a video that trained object detection model is qualitatively tested on and the object-detected version of that video.
 - 'training_artifacts' folder: contains model training artifacts, specifically recent model checkpoints (empty in repo because files are too large). These are outputs of running 'scripts/train.py'.
+- 'label_map.pbtxt': lists the classes, in this case just 'bear'
+- 'ssd_mobilenet_v1_coco_2018_01_28.config': config file for the model I used
