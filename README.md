@@ -19,7 +19,7 @@ I use 3 images containing text (included in repository).
 
 #### Object Detection: 
 To train the object detection model, I downloaded ~175 bear pictures from Google Images.
-To qualitatively test the object detection model, I downloaded a video with bears in it from Youtube.
+To qualitatively test the model, I downloaded a video with bears in it from Youtube.
 
 ### Method:
 
@@ -45,32 +45,38 @@ No parameter tuning is included, this repo just gets things running as fast as p
 I conduct OCR on 3 sample images in R and Python. I return text and the original images with bounding boxes.
 
 #### Object Detection: 
-I attempt to identify a bear in a new, test video and place a bounding box around bears in every frame in which they appear.
+I attempt to identify bears in a new, test video and place bounding boxes around bears whenever they appear.
 
-I generally use a transfer learning approach similar to the "image_classification_transfer_learning" branch. I start with a pre-trained network and train it using ~175 custom bear images.
+I generally use a transfer learning approach similar to the "image_classification_transfer_learning" branch. I start with a pre-trained model and train it further using ~175 bear images from Google.
 
-Much of my approach was based on this blog post:
-https://towardsdatascience.com/building-a-toy-detector-with-tensorflow-object-detection-api-63c0fdf2ac95
+Available models can be found here:
+https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
 
-I run these scripts locally, not in the cloud.
+Reference articles:
+- https://towardsdatascience.com/building-a-toy-detector-with-tensorflow-object-detection-api-63c0fdf2ac95
+- https://towardsdatascience.com/how-to-train-your-own-object-detector-with-tensorflows-object-detector-api-bec72ecfe1d9
 
-Note: getting the object detection scripts running is pretty tricky. You should have the following repositories cloned:
+I especially used the first post above. The scripts in this repo (and the first post above) are basically modified versions of scripts found in the Tensorflow Object Detection API repo (https://github.com/tensorflow/models/tree/master/research/object_detection).
+
+I run these scripts locally, not in the cloud. Training the model to decent performance took roughly 2 days using only a CPU.
+
+Note: getting the scripts running can be tricky. You should have the following repositories cloned:
 - https://github.com/tensorflow/models
 - https://github.com/cocodataset/cocoapi
 
-Here are helpful instructions for the installation of the Tensorflow Object Detection API: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md
+For the 2nd repo above, if you are on Windows I recommend using:
+- https://github.com/philferriere/cocoapi
+
+You'll also need to install Visual C++ (instructions in the link above).
+
+Here are instructions for installing the Tensorflow Object Detection API: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md
 
 These instructions require installing "protoc". I recommend using "protoc-3.4.0-win32.zip" which can be found here: 
 https://github.com/google/protobuf/releases/tag/v3.4.0
 
-The newest versions of "protoc" seemed to be missing a file I needed and did not work for me.
+The newest versions of "protoc" seemed to be missing a file I needed and did not work for me. Note that I'm using a Windows machine.
 
-Please follow the instructions in the above link carefully...I hit many errors due to not setting my Python path correctly and not compiling Protobuf correctly.
-
-Available models can be found:
-https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
-
-You will probably still hit a few errors that need to be Googled.
+Even with the above instructions, I hit many errors due to not setting my Python path correctly and not compiling Protobuf correctly. The Tensorflow Object Detection API is constantly changing, so things may be out of date already!
 
 The final product ('test_video/bear sits next to guy_detection.mp4') is pretty good but not perfect. The model seems to mistake anything brown for a bear (like the camping chair at 0:02). It doesn't detect the actual bear until about 0:05. It stops recognizing the bear when the bear turns its face away from the camera at 0:08. This is probably a result of most of the training data being pictures of bears from the front. There are other false positives, but these might be excluded by only including detection above some confidence threshold. Overall, this is a pretty cool result.
 
