@@ -76,6 +76,7 @@ with contents:
  - frozen_inference_graph.pb
  + saved_model (a directory)
 """
+
 import tensorflow as tf
 from google.protobuf import text_format
 from object_detection import exporter
@@ -99,6 +100,7 @@ FLAGS = flags.FLAGS
 
 
 def main(_):
+    
   assert FLAGS.pipeline_config_path, '`pipeline_config_path` is missing'
   assert FLAGS.trained_checkpoint_prefix, (
          '`trained_checkpoint_prefix` is missing')

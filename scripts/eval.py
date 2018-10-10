@@ -3,6 +3,7 @@
 # The output is a "tfevents" file and is put into the "eval_dir" folder.
 # The "tfevents" file can be viewed with Tensorboard.
 # This script can run simultaneously with "scripts/train.py".
+
 # This script is a modified version of: 
 # https://github.com/priya-dwivedi/Deep-Learning/blob/master/tensorflow_toy_detector/eval.py
 # And that repo almost certainly pulled it from the 'tensorflow' repo 
@@ -10,15 +11,14 @@
 
 # This script in particular can be a bitch.
 
-# You will need the "cocoapi" repository. The link is:
-# https://github.com/cocodataset/cocoapi
+# You'll need the "cocoapi" repository: https://github.com/cocodataset/cocoapi
 # IF YOU ARE ON WINDOWS, BE SURE TO USE:
 # https://github.com/philferriere/cocoapi
 
-# You will need to install Visual C++. Instructions are in the Github link 
+# You'll need to install Visual C++. Instructions are in the Github link 
 # above (the Windows version link).
 
-# Finally, you will need to run the command:
+# Finally, you'll need to run the command:
 # python PythonAPI/setup.py build_ext install
 # This installs the "pycocotools" package and enables the 
 # "from object_detection.legacy import evaluator"
@@ -165,6 +165,7 @@ def get_configs_from_multiple_files():
 def main(unused_argv):
   assert FLAGS.checkpoint_dir, '`checkpoint_dir` is missing.'
   assert FLAGS.eval_dir, '`eval_dir` is missing.'
+  
   if FLAGS.pipeline_config_path:
     model_config, eval_config, input_config = get_configs_from_pipeline_file()
   else:

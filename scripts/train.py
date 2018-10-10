@@ -4,6 +4,9 @@
 
 # This script can run simultaneously with "scripts/eval.py".
 
+# This script saves recent model checkpoints and a 'tfevents' file in the 
+# 'training_artifacts' folder.
+
 # This script is a modified version of:
 # https://github.com/tensorflow/models/blob/master/research/object_detection/legacy/train.py
 
@@ -11,9 +14,6 @@
 # training function) throws an error.
 # However, the error does NOT occur if you execute the "main()" 
 # function line by line.
-
-# Running the script generates a Tensorboard object in the same folder where 
-# model checkpoints are saved.
 
 ###############################################################################
 
@@ -83,7 +83,6 @@ from google.protobuf import text_format
 # sys.path.append('models/research')
 
 # Assuming the correct paths are added to the Python path, import more stuff.
-# from object_detection import trainer # this throws an error
 from object_detection.legacy import trainer
 from object_detection.builders import input_reader_builder
 from object_detection.builders import model_builder # lots of chatter, but no error  

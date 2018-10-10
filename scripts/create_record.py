@@ -6,12 +6,15 @@
 # https://github.com/tensorflow/models/blob/master/research/object_detection/dataset_tools/create_pet_tf_record.py
 
 # In some form, it takes as inputs:
-# - the images in the "images" folder
-# - the annotations in the "annotations" folder
-# - "trainval.txt" in the "annotations" folder
+    # - the images in the "images" folder
+    # - the annotations in the "annotations" folder
+    # - "trainval.txt" in the "annotations" folder
 
 # THIS SCRIPT WILL NOT WORK OUT OF THE BOX!
 # See below for instructions.
+
+# Manual input may be needed near line 250 for specifying the image, 
+# annotations, and "trainval.txt" directories.
 
 # Confusingly, running the last 2 lines of the script (which creates the 
 # training and validation data) throws an error but works anyway.
@@ -115,7 +118,7 @@ def get_class_name_from_filename(file_name):
 def dict_to_tf_example(data,
                        label_map_dict,
                        image_subdirectory,
-                       ignore_difficult_instances=True):
+                       ignore_difficult_instances = True):
   """Convert XML derived dict to tf.Example proto.
 
   Notice that this function normalizes the bounding box coordinates provided
@@ -178,7 +181,7 @@ def dict_to_tf_example(data,
     truncated.append(int(obj['truncated']))
     poses.append(obj['pose'].encode('utf8'))
 
-  example = tf.train.Example(features=tf.train.Features(feature={
+  example = tf.train.Example(features = tf.train.Features(feature={
       'image/height': dataset_util.int64_feature(height),
       'image/width': dataset_util.int64_feature(width),
       'image/filename': dataset_util.bytes_feature(
@@ -247,14 +250,15 @@ def main(_):
   data_dir = FLAGS.data_dir
   label_map_dict = label_map_util.get_label_map_dict(FLAGS.label_map_path)
 
+  # MANUAL INPUT MAY BE NEEDED HERE TO CORRECTLY SET DIRECTORIES BELOW!
   logging.info('Reading from dataset.')
   image_dir = os.path.join(data_dir, 'images')
   annotations_dir = os.path.join(data_dir, 'annotations')
   examples_path = os.path.join(annotations_dir, 'trainval.txt')
   examples_list = dataset_util.read_examples_list(examples_path)
 
-  # Test images are not included in the downloaded data set, so we shall perform
-  # our own split.
+  # Test images are not included in the downloaded data set, 
+  # so we shall perform our own split.
   random.seed(42)
   random.shuffle(examples_list)
   num_examples = len(examples_list)

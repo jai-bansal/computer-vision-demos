@@ -20,31 +20,39 @@
 import numpy as np                                   
 import os                                            
 import tensorflow as tf                              
+from PIL import Image                                # Is this still needed?  
 
-from PIL import Image                                 
+import cv2                                           # Is this still needed?
+from moviepy.editor import *                         # Deals with video clips  
+
+# The "models/research/object_detection" folder should be added to the 
+# Python path to allow the following imports.
+# You can add folders to the Python path as follows (the following commands 
+# must be modified for your machine).
+
+# Example code to add a folder to Python path.
+# import sys
+# sys.path.append('models/research/object_detection')  
 
 from utils import label_map_util                                         
-from utils import visualization_utils as vis_util  
-
-import cv2                                           # Deals with images.
-from moviepy.editor import *                         # Deals with video clips
+from utils import visualization_utils as vis_util
 
 ##################
 # DEFINE VARIABLES
 ##################
 
 PATH_TO_FROZEN_GRAPH = "inference_ready_model/frozen_inference_graph.pb"               # Model checkpoint exported for inference.
-PATH_TO_TEST_IMAGES_DIR = "test_video_frames"                                          # Location of test video frames.
 PATH_TO_LABELS = 'label_map.pbtxt'
-TEST_IMAGE_PATHS = ["test_video_frames/bear sits next to guy_" + str(i) + ".0.jpg" for i in range(1, len(os.listdir("test_video_frames")) + 1)]
 
 ###############################
 # LOAD FROZEN MODEL INTO MEMORY
 ###############################
 
 detection_graph = tf.Graph()
+
 with detection_graph.as_default():
   od_graph_def = tf.GraphDef()
+  
   with tf.gfile.GFile(PATH_TO_FROZEN_GRAPH, 'rb') as fid:
     serialized_graph = fid.read()
     od_graph_def.ParseFromString(serialized_graph)
@@ -63,6 +71,7 @@ category_index = label_map_util.create_category_index_from_labelmap(PATH_TO_LABE
 def run_inference_for_single_image(image, graph):
   with graph.as_default():
     with tf.Session() as sess:
+        
       # Get handles to input and output tensors
       ops = tf.get_default_graph().get_operations()
       all_tensor_names = {output.name for op in ops for output in op.outputs}
@@ -75,6 +84,7 @@ def run_inference_for_single_image(image, graph):
         if tensor_name in all_tensor_names:
           tensor_dict[key] = tf.get_default_graph().get_tensor_by_name(
               tensor_name)
+          
       if 'detection_masks' in tensor_dict:
         # The following processing is only for single image
         detection_boxes = tf.squeeze(tensor_dict['detection_boxes'], [0])
@@ -103,6 +113,7 @@ def run_inference_for_single_image(image, graph):
           'detection_classes'][0].astype(np.uint8)
       output_dict['detection_boxes'] = output_dict['detection_boxes'][0]
       output_dict['detection_scores'] = output_dict['detection_scores'][0]
+      
       if 'detection_masks' in output_dict:
         output_dict['detection_masks'] = output_dict['detection_masks'][0]
   return output_dict
@@ -145,6 +156,3 @@ for frame in orig_vid.iter_frames():
 # Turn "detected_frames" into a video and export.
 new_vid = ImageSequenceClip(detected_frames, fps = orig_vid.fps)
 new_vid.write_videofile('test_video/bear sits next to guy_detected.mp4')
-  
-
-  
