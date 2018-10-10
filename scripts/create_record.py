@@ -1,9 +1,14 @@
 # This script creates training and validation data set 
 # records for use in an object detection model.
+# The output files are 'prepped_data/train.record' and 
+# 'prepped_data/val.record'.
+# This script is a modified version of:
+# https://github.com/tensorflow/models/blob/master/research/object_detection/dataset_tools/create_pet_tf_record.py
 
-# Overall, to get this project working I used the following blog post:
-# https://towardsdatascience.com/building-a-toy-detector-with-tensorflow-object-detection-api-63c0fdf2ac95 
-# and LOTS of Googling errors.
+# In some form, it takes as inputs:
+# - the images in the "images" folder
+# - the annotations in the "annotations" folder
+# - "trainval.txt" in the "annotations" folder
 
 # THIS SCRIPT WILL NOT WORK OUT OF THE BOX!
 # See below for instructions.
@@ -77,7 +82,6 @@ import tensorflow as tf
 # Assuming the correct paths are added to the Python path, import more stuff.
 from object_detection.utils import dataset_util
 from object_detection.utils import label_map_util
-
 
 # Set flags.
 # Make sure working directory is set correctly.

@@ -3,6 +3,9 @@
 # A model can be trained using "scripts/train.py" and evaluated using 
 # "scripts/eval.py".
 
+# This script is a modified version of: 
+# https://github.com/tensorflow/models/blob/master/research/object_detection/export_inference_graph.py
+
 # Confusingly, running the last 2 lines of the script (which run the main function) 
 # throws an error but works anyway.
 # The error does NOT occur if you execute the "main()" function line by line.

@@ -1,14 +1,18 @@
 # This script trains an object detection model.
+# Among other things, it takes as input data prepped for model training.
+# These files are 'prepped_data/train.record' and 'prepped_data/val.record'.
 
-# Overall, to get this project working I used the following blog post:
-# https://towardsdatascience.com/building-a-toy-detector-with-tensorflow-object-detection-api-63c0fdf2ac95 
-# and LOTS of Googling errors.
+# This script can run simultaneously with "scripts/eval.py".
+
+# This script is a modified version of:
+# https://github.com/tensorflow/models/blob/master/research/object_detection/legacy/train.py
 
 # Confusingly, running the last 2 lines of the script (which kick off the 
 # training function) throws an error.
-# However, the error does NOT occur if you execute the "main()" function line by line.
+# However, the error does NOT occur if you execute the "main()" 
+# function line by line.
 
-# Running the script generates a tensorboard object in the same folder where 
+# Running the script generates a Tensorboard object in the same folder where 
 # model checkpoints are saved.
 
 ###############################################################################

@@ -1,5 +1,9 @@
 # This script uses a trained object detection model on a new video.
-# This script is bassed on a modified version of this Jupyter notebook:
+# The output is a version of the original video where each frame has a box 
+# around the detected object (if present).
+# The output is in the "test_video" folder.
+
+# This script is a modified version of this Jupyter notebook:
 # https://github.com/tensorflow/models/blob/master/research/object_detection/object_detection_tutorial.ipynb
 
 # I add code using the "moviepy" package to work with videos.

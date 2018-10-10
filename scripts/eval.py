@@ -1,9 +1,12 @@
 # This script evalutes an object detection model.
 # A model can be trained using "scripts/train.py".
-
-# Overall, to get this project working I used the following blog post:
-# https://towardsdatascience.com/building-a-toy-detector-with-tensorflow-object-detection-api-63c0fdf2ac95 
-# and LOTS of Googling errors.
+# The output is a "tfevents" file and is put into the "eval_dir" folder.
+# The "tfevents" file can be viewed with Tensorboard.
+# This script can run simultaneously with "scripts/train.py".
+# This script is a modified version of: 
+# https://github.com/priya-dwivedi/Deep-Learning/blob/master/tensorflow_toy_detector/eval.py
+# And that repo almost certainly pulled it from the 'tensorflow' repo 
+# (https://github.com/tensorflow/models/tree/master/research/object_detection).
 
 # This script in particular can be a bitch.
 
@@ -73,7 +76,6 @@ import functools
 import tensorflow as tf
 
 from google.protobuf import text_format 
-#from object_detection import evaluator # error
 from object_detection.legacy import evaluator
 from object_detection.builders import input_reader_builder
 from object_detection.builders import model_builder

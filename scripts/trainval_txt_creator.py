@@ -1,5 +1,4 @@
-# This script creates 'trainval.txt'.
-# The file is put into the 'annotations' folder. 
+# This script creates 'annotations/trainval.txt'.
 # This is apparently important for the whole object detection model to work.
 
 ################
