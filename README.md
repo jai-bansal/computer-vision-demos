@@ -103,7 +103,7 @@ The final product ('test_video/bear sits next to guy_detection.mp4') is pretty g
 
 - 'annotations' folder: contains annotations for images in the 'images' folder. I used an annotation tool (https://github.com/tzutalin/labelImg). This folder also contains 'trainval.txt' (output of 'scripts/trainval_txt_creator.py').
 - 'base_model' folder: holds pre-trained model files (empty in repo because files are too large). I used 'ssd_mobilenet_v1_coco' from: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
-- 'eval_dir' folder: contains model evaluation artifacts, specifically a 'tfevents' file (empty in repo because files are too large). This is the output of 'scripts/eval.py'.
+- 'eval_dir' folder: contains model evaluation artifacts, specifically a 'tfevents' file (not in repo because files are too large). This is the output of 'scripts/eval.py'. The folder does contain a video ('sample_pic_eval_over_time.mp4') of the model being evaluated on a sample image at different training iterations. It's cool to see the model improve and eventually be able to identify the bear in the image.
 - 'images' folder: contains ~175 bear images used to train object detection model. I manually downloaded these from Google.
 - 'inference_ready_model': holds trained object detection model ready for use on new images (empty in repo because files are too large). These files are the output of 'scripts/export_inference_graph.py'.
 - 'prepped_data' folder: contains training and validation set data prepared for use in model training. These files are outputs of 'scripts/create_record.py')
