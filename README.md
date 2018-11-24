@@ -120,4 +120,3 @@ The final product ('test_video/bear sits next to guy_detection.mp4') is pretty g
 - 'ssd_mobilenet_v1_coco_2018_01_28.config': config file for the model I used
 
 - Here's a recommended order to work through the scripts: 'trainval_txt_creator.py', 'create_record.py', 'train.py', 'eval.py', 'export_inference_graph.py', 'run_model_on_new_video.py'
-- 
