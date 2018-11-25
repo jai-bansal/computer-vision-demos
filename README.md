@@ -6,6 +6,8 @@ This repo contains simple examples of a few popular computer vision tasks:
 - object character recognition (OCR)
 - object detection
 
+There's a branch for each task.
+
 ### Data: 
 
 #### Image Classification using Transfer Learning
@@ -47,7 +49,7 @@ I conduct OCR on 3 sample images in R and Python. I return text and the original
 #### Object Detection: 
 I attempt to identify bears in a new, test video and place bounding boxes around bears whenever they appear.
 
-I generally use a transfer learning approach similar to the "image_classification_transfer_learning" branch. I start with a pre-trained model and train it further using ~175 bear images from Google.
+I generally use a transfer learning approach similar to the "image_classification_transfer_learning" branch. I start with a pre-trained model and train it further using ~175 bear images from Google Images.
 
 Available models can be found here:
 https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
@@ -58,7 +60,7 @@ Reference articles:
 
 I especially used the first post above. The scripts in this repo (and the first post above) are basically modified versions of scripts found in the Tensorflow Object Detection API repo (https://github.com/tensorflow/models/tree/master/research/object_detection).
 
-I run these scripts locally, not in the cloud. Training the model to decent performance took roughly 2 days using only a CPU.
+I run these scripts locally, not in the cloud. Training the model to decent performance took ~2 days using only a CPU.
 
 Note: getting the scripts running can be tricky. You should have the following repositories cloned:
 - https://github.com/tensorflow/models
@@ -76,7 +78,7 @@ https://github.com/google/protobuf/releases/tag/v3.4.0
 
 The newest versions of "protoc" seemed to be missing a file I needed and did not work for me. Note that I'm using a Windows machine.
 
-Even with the above instructions, I hit many errors due to not setting my Python path correctly and not compiling Protobuf correctly. The Tensorflow Object Detection API is constantly changing, so things may be out of date already!
+Even with the above instructions, I hit many errors due to not setting my Python path correctly and not compiling Protobuf correctly. The Tensorflow Object Detection API is constantly changing, so things may be out of date!
 
 The final product ('test_video/bear sits next to guy_detection.mp4') is pretty good but not perfect. The model seems to mistake anything brown for a bear (like the camping chair at 0:02). It doesn't detect the actual bear until about 0:05. It stops recognizing the bear when the bear turns its face away from the camera at 0:08. This is probably a result of most of the training data being pictures of bears from the front. There are other false positives, but these might be excluded by only including detection above some confidence threshold. Overall, this is a pretty cool result.
 
@@ -92,7 +94,7 @@ The final product ('test_video/bear sits next to guy_detection.mp4') is pretty g
       - 'cat' folder: contains validation set images of cats
       - 'dog' folder: contains validation set images of dogs
 - 'weights' folder: initially just contains a placeholder text file but must contain the weights file for the image rec models above for the script to run
-- 'add_custom_class.py': trains a model to identify custom classes of dogs and cats
+- 'add_custom_class.py': trains a model to identify custom classes (dogs and cats)
 
 #### 'optical_character_recognition' branch
 
@@ -104,7 +106,7 @@ The final product ('test_video/bear sits next to guy_detection.mp4') is pretty g
 - 'annotations' folder: contains annotations for images in the 'images' folder. I used an annotation tool (https://github.com/tzutalin/labelImg). This folder also contains 'trainval.txt' (output of 'scripts/trainval_txt_creator.py').
 - 'base_model' folder: holds pre-trained model files (empty in repo because files are too large). I used 'ssd_mobilenet_v1_coco' from: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
 - 'eval_dir' folder: contains model evaluation artifacts, specifically a 'tfevents' file (not in repo because files are too large). This is the output of 'scripts/eval.py'. The folder does contain a video ('sample_pic_eval_over_time.mp4') of the model being evaluated on a sample image at different training iterations. It's cool to see the model improve and eventually be able to identify the bear in the image.
-- 'images' folder: contains ~175 bear images used to train object detection model. I manually downloaded these from Google.
+- 'images' folder: contains ~175 bear images used to train object detection model. I manually downloaded these from Google Images.
 - 'inference_ready_model': holds trained object detection model ready for use on new images (empty in repo because files are too large). These files are the output of 'scripts/export_inference_graph.py'.
 - 'prepped_data' folder: contains training and validation set data prepared for use in model training. These files are outputs of 'scripts/create_record.py')
 - 'scripts' folder:
@@ -119,4 +121,4 @@ The final product ('test_video/bear sits next to guy_detection.mp4') is pretty g
 - 'label_map.pbtxt': lists the classes, in this case just 'bear'
 - 'ssd_mobilenet_v1_coco_2018_01_28.config': config file for the model I used
 
-- Here's a recommended order to work through the scripts: 'trainval_txt_creator.py', 'create_record.py', 'train.py', 'eval.py', 'export_inference_graph.py', 'run_model_on_new_video.py'
+- Here's a recommended order to work through the scripts: 'trainval_txt_creator.py', 'create_record.py', 'train.py', 'eval.py', 'export_inference_graph.py', 'run_model_on_new_video.py'. I also recommend using the reference articles linked above.
